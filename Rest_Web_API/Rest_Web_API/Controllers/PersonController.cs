@@ -43,18 +43,20 @@ namespace Rest_Web_API.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public ActionResult Post([FromBody] Person person)
-        {
+        //[HttpPost]
+        //public ActionResult Post([FromBody] Person person)
+        //{
             
-            if (person == null)
-            {
-               return BadRequest();
-            }
+        //    if (person == null)
+        //    {
+        //       return BadRequest();
+        //    }
 
-            return new ObjectResult(_personService.Create(person));
+        //   // return new ObjectResult(_personService.Create(person));
 
-        }
+        //    return Ok(_personService.Create(person));
+
+        //}
 
         // PUT api/values/5
         [HttpPut("{id}")]
@@ -66,7 +68,7 @@ namespace Rest_Web_API.Controllers
                 return BadRequest();
             }
 
-            return new ObjectResult(_personService.Update(person));
+            return Ok(_personService.Update(person));
 
         }
 

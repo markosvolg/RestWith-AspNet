@@ -122,12 +122,16 @@ namespace Rest_Web_API.Controllers
             return 0;
         }
 
-        private bool IsNumeric(string strnumber)
+        private bool IsNumeric(string strNumber)
         {
 
             double number;
 
-            bool isNumber = double.TryParse(strnumber, System.Globalization.NumberStyles.Any, System.Globalization.NumberFormatInfo.InvariantInfo, out number);
+            bool isNumber = double.TryParse(
+                strNumber,
+                System.Globalization.NumberStyles.Any, 
+                System.Globalization.NumberFormatInfo.InvariantInfo, 
+                out number);
 
             return isNumber;
         }

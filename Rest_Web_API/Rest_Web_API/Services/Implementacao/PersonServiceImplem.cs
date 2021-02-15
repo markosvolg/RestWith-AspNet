@@ -1,4 +1,5 @@
-﻿using Rest_Web_API.Model;
+﻿using Rest_Web_API.Context;
+using Rest_Web_API.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,35 @@ namespace Rest_Web_API.Services.Implementacao
 {
     public class PersonServiceImplem : IPersonService
     {
+
+
+        //private MySqlContext _context;
+
+
+        //public PersonServiceImplem(MySqlContext context)
+        //{
+        //    _context = context;
+        //}
+
         private volatile int count;
 
-        public Person Create(Person person)
-        {
-            return person;
-        }
+        //public Person Create(Person person)
+        //{
+
+        //    try
+        //    {
+        //        _context.Add(person);
+        //        _context.SaveChanges();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+
+        //    return person;
+        //}
 
         public void Delete(int Id)
         {
