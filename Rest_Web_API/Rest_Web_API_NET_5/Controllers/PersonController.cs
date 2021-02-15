@@ -4,35 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Rest_Web_API.Model;
-using Rest_Web_API.Services;
+using Rest_Web_API_NET_5.Model;
+using Rest_Web_API_NET_5.Services;
+using Rest_Web_API_NET_5.Services.Implementacao;
 
-namespace Rest_Web_API.Controllers
+namespace Rest_Web_API_NET_5.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
+        private readonly ILogger<PersonController> _logger;
 
         private IPersonService _personService;
 
-
-
-        private readonly ILogger<PersonController> _logger;
-
-        public PersonController(ILogger<PersonController> logger)
+        public PersonController(IPersonService personService, ILogger<PersonController> logger)
         {
+            _personService = personService;
             _logger = logger;
         }
 
-        public PersonController(IPersonService personService)
-        {
-            _personService = personService;
-        }
 
 
-        // GET api/values
-        [HttpGet]
+
+       // GET api/values
+       [HttpGet]
         public ActionResult Get()
         {
             return Ok(_personService.FindAll());
@@ -52,20 +48,20 @@ namespace Rest_Web_API.Controllers
         }
 
         // POST api/values
-        //[HttpPost]
-        //public ActionResult Post([FromBody] Person person)
-        //{
-            
-        //    if (person == null)
-        //    {
-        //       return BadRequest();
-        //    }
+        [HttpPost]
+        public ActionResult Post([FromBody] Person person)
+        {
 
-        //   // return new ObjectResult(_personService.Create(person));
+            if (person == null)
+            {
+                return BadRequest();
+            }
 
-        //    return Ok(_personService.Create(person));
+            // return new ObjectResult(_personService.Create(person));
 
-        //}
+            return Ok(_personService.Create(person));
+
+        }
 
         // PUT api/values/5
         [HttpPut("{id}")]

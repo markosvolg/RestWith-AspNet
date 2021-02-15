@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest_Web_API", "Rest_Web_API\Rest_Web_API.csproj", "{4C837A98-8D80-461C-A4C4-C952374D1B1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rest_Web_API_NET_5", "Rest_Web_API_NET_5\Rest_Web_API_NET_5.csproj", "{9121AA3D-CFE7-4E50-9B7F-763FE826D08A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C837A98-8D80-461C-A4C4-C952374D1B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C837A98-8D80-461C-A4C4-C952374D1B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C837A98-8D80-461C-A4C4-C952374D1B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C837A98-8D80-461C-A4C4-C952374D1B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9121AA3D-CFE7-4E50-9B7F-763FE826D08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9121AA3D-CFE7-4E50-9B7F-763FE826D08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9121AA3D-CFE7-4E50-9B7F-763FE826D08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9121AA3D-CFE7-4E50-9B7F-763FE826D08A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

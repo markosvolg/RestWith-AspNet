@@ -1,7 +1,8 @@
-﻿using Rest_Web_API.Model;
+﻿
+using Rest_Web_API_NET_5.Model;
 using System.Collections.Generic;
 
-namespace Rest_Web_API.Services
+namespace Rest_Web_API_NET_5.Services
 {
    public interface IPersonService
     {
