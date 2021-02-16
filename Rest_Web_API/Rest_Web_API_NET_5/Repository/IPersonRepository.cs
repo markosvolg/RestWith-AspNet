@@ -2,9 +2,9 @@
 using Rest_Web_API_NET_5.Model;
 using System.Collections.Generic;
 
-namespace Rest_Web_API_NET_5.Services
+namespace Rest_Web_API_NET_5.Repository
 {
-   public interface IPersonService
+   public interface IPersonRepository
     {
 
         Person Create(Person person);
@@ -15,7 +15,7 @@ namespace Rest_Web_API_NET_5.Services
 
         void  Delete(int Id);
 
-
+        bool Exists(int Id);
 
     }
 }

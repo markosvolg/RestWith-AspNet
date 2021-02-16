@@ -6,16 +6,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rest_Web_API_NET_5.Services.Implementacao
+namespace Rest_Web_API_NET_5.Repository.Implementacao
 {
-    public class PersonServiceImplem : IPersonService
+    public class PersonRepositoryImplem : IPersonRepository
     {
 
 
         private MySqlContext _context;
         //private volatile int count;
 
-        public PersonServiceImplem(MySqlContext context)
+        public PersonRepositoryImplem(MySqlContext context)
         {
             _context = context;
         }
@@ -128,7 +128,7 @@ namespace Rest_Web_API_NET_5.Services.Implementacao
             return person;
         }
 
-        private bool Exists(int Id)
+        public bool Exists(int Id)
         {
             return _context.Persons.Any(p => p.Id.Equals(Id));
         }

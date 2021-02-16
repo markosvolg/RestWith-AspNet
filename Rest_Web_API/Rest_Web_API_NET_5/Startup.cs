@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Rest_Web_API.Context;
-using Rest_Web_API_NET_5.Services;
-using Rest_Web_API_NET_5.Services.Implementacao;
+using Rest_Web_API_NET_5.Repository;
+using Rest_Web_API_NET_5.Repository.Implementacao;
 
 namespace Rest_Web_API_NET_5
 {
@@ -31,10 +31,11 @@ namespace Rest_Web_API_NET_5
             services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
 
             //Versionamento de API
-         //   services.AddApiVersioning();
+            services.AddApiVersioning();
 
             //Injeção de Dependencia
-            services.AddScoped<IPersonService, PersonServiceImplem>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplem>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImplem>();
 
             //services.AddSwaggerGen(c =>
             //{

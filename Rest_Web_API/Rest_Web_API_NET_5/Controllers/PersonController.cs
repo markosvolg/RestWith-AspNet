@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rest_Web_API_NET_5.Model;
-using Rest_Web_API_NET_5.Services;
-using Rest_Web_API_NET_5.Services.Implementacao;
+using Rest_Web_API_NET_5.Repository;
 
 namespace Rest_Web_API_NET_5.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
 
-        private IPersonService _personService;
+        private IPersonBusiness _personService;
 
-        public PersonController(IPersonService personService, ILogger<PersonController> logger)
+        public PersonController(IPersonBusiness personService, ILogger<PersonController> logger)
         {
             _personService = personService;
             _logger = logger;
