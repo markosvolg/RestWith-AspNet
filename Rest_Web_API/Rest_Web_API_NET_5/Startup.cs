@@ -8,6 +8,7 @@ using Rest_Web_API.Context;
 using Rest_Web_API_NET_5.Business;
 using Rest_Web_API_NET_5.Business.Implementacao;
 using Rest_Web_API_NET_5.Repository;
+using Rest_Web_API_NET_5.Repository.Generic;
 using Rest_Web_API_NET_5.Repository.Implementacao;
 using Serilog;
 using System;
@@ -44,10 +45,10 @@ namespace Rest_Web_API_NET_5
             services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
 
 
-            if (Environment.IsDevelopment())
-            {
-                MigrateDatabase(connection);
-            }
+            //if (Environment.IsDevelopment())
+            //{
+            //    MigrateDatabase(connection);
+            //}
 
             //Versionamento de API
             services.AddApiVersioning();
@@ -56,7 +57,9 @@ namespace Rest_Web_API_NET_5
             services.AddScoped<IPersonBusiness, PersonBusinessImplem>();
             services.AddScoped<IPersonRepository, PersonRepositoryImplem>();
             services.AddScoped<IBookBusiness, BookBusinessImplement>();
-            services.AddScoped<IBookRepository, BookRepositoryImplement>();
+           // services.AddScoped<IBookRepository, BookRepositoryImplement>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             //services.AddSwaggerGen(c =>
             //{

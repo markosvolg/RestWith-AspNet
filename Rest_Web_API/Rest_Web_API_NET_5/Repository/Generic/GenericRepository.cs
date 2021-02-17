@@ -1,29 +1,31 @@
-﻿using Rest_Web_API.Context;
-using Rest_Web_API_NET_5.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Rest_Web_API.Context;
+using Rest_Web_API_NET_5.Model.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Rest_Web_API_NET_5.Repository.Implementacao
+namespace Rest_Web_API_NET_5.Repository.Generic
 {
-    public class BookRepositoryImplement : IBookRepository
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
 
         private MySqlContext _context;
 
+        private DbSet<T> _dataset;
 
-        public BookRepositoryImplement(MySqlContext context)
+        public GenericRepository(MySqlContext context)
         {
             _context = context;
+            _dataset = _context.Set<T>();
         }
 
-
-        public Book Create(Book book)
+        public T Create(T item)
         {
             try
             {
-                _context.Add(book);
+                _dataset.Add(item);
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -32,34 +34,30 @@ namespace Rest_Web_API_NET_5.Repository.Implementacao
                 throw;
             }
 
-            return book;
-
-        }
-        public Book FindById(int Id)
-        {
-
-            return  _context.Books.SingleOrDefault(p => p.Id.Equals(Id));
-        }
-
-        public List<Book> FindAll()
-        {
-            return _context.Books.ToList();
-
+            return item;
         }
 
 
-        public Book Update(Book book)
+
+        public List<T> FindAll()
         {
-            if (!Exists(book.Id)) return null;
+            return _dataset.ToList();
+        }
 
-            var resut = _context.Persons.SingleOrDefault(p => p.Id.Equals(book.Id));
+        public T FindById(int Id)
+        {
+            return _dataset.SingleOrDefault(p => p.Id.Equals(Id));
+        }
 
+        public T Update(T item)
+        {
 
+            var resut = _dataset.SingleOrDefault(p => p.Id.Equals(item.Id));
             if (resut != null)
             {
                 try
                 {
-                    _context.Entry(resut).CurrentValues.SetValues(book);
+                    _context.Entry(resut).CurrentValues.SetValues(item);
                     _context.SaveChanges();
 
 
@@ -71,18 +69,23 @@ namespace Rest_Web_API_NET_5.Repository.Implementacao
                 }
 
             }
-            return book;
+            else
+            {
+                return null;
+            }
+            return item;
         }
+
 
         public void Delete(int Id)
         {
-            var resut = _context.Books.SingleOrDefault(p => p.Id.Equals(Id));
+            var resut = _dataset.SingleOrDefault(p => p.Id.Equals(Id));
 
             if (resut != null)
             {
                 try
                 {
-                    _context.Books.Remove(resut);
+                    _dataset.Remove(resut);
                     _context.SaveChanges();
 
 
@@ -94,9 +97,7 @@ namespace Rest_Web_API_NET_5.Repository.Implementacao
                 }
 
             }
-
         }
-
 
         public bool Exists(int Id)
         {

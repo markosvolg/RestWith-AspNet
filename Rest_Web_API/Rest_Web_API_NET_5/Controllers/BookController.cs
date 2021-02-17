@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace Rest_Web_API_NET_5.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class BookController : ControllerBase
     {

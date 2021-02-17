@@ -10,9 +10,9 @@ namespace Rest_Web_API_NET_5.Business.Implementacao
     public class BookBusinessImplement : IBookBusiness
     {
 
-        private IBookRepository _repository;
+        private IRepository<Book> _repository;
 
-        public BookBusinessImplement(IBookRepository repository)
+        public BookBusinessImplement(IRepository<Book> repository)
         {
             _repository = repository;
         }
@@ -38,10 +38,9 @@ namespace Rest_Web_API_NET_5.Business.Implementacao
             return _repository.FindById(Id);
         }
 
-        public Book Delete(int Id)
+        public void Delete(int Id)
         {
-
-            return _repository.Delete(Id);
+            _repository.Delete(Id);
         }
 
    
