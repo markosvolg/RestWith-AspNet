@@ -1,44 +1,47 @@
-﻿
-
-using Rest_Web_API.Context;
+﻿using Rest_Web_API_NET_5.Data.Converter.Implement;
+using Rest_Web_API_NET_5.Data.VO;
 using Rest_Web_API_NET_5.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Rest_Web_API_NET_5.Repository.Implementacao
 {
     public class PersonBusinessImplem : IPersonBusiness
     {
 
-        private IPersonRepository _repository;
+        private readonly IRepository<Person> _repository;
 
-        public PersonBusinessImplem(IPersonRepository repository)
+        private readonly PersonConverter _converter;
+
+        public PersonBusinessImplem(IRepository<Person> repository )
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
 
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-
-            return _repository.Create(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _repository.FindAll();
+            return _converter.Parse(_repository.FindAll());
         }
 
-        public Person FindById(int Id)
+        public PersonVO FindById(int Id)
         {
-            return _repository.FindById(Id);
+            return _converter.Parse(_repository.FindById(Id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
 
-            return _repository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(int Id)

@@ -1,4 +1,5 @@
 ﻿
+using Rest_Web_API_NET_5.Data.VO;
 using Rest_Web_API_NET_5.Model;
 using System.Collections.Generic;
 
@@ -7,11 +8,11 @@ namespace Rest_Web_API_NET_5.Repository
    public interface IPersonBusiness
     {
 
-        Person Create(Person person);
-        Person FindById(int Id);
+        PersonVO Create(PersonVO person);
+        PersonVO FindById(int Id);
 
-        List<Person>  FindAll();
-        Person Update(Person person);
+        List<PersonVO>  FindAll();
+        PersonVO Update(PersonVO person);
 
         void  Delete(int Id);
 
