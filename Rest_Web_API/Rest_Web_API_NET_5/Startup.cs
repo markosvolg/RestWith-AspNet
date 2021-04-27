@@ -27,8 +27,10 @@ namespace Rest_Web_API_NET_5
 
             var connection = Configuration["MySQLConnection:MySQLConnectionString"];
 
-
             services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
+
+            //Versionamento de API
+            services.AddApiVersioning();
 
             //Injeção de Dependencia
             services.AddScoped<IPersonService, PersonServiceImplem>();

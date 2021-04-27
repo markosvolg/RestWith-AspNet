@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rest_Web_API_NET_5.Model;
 using Rest_Web_API_NET_5.Services;
-using Rest_Web_API_NET_5.Services.Implementacao;
 
 namespace Rest_Web_API_NET_5.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -27,8 +23,8 @@ namespace Rest_Web_API_NET_5.Controllers
 
 
 
-       // GET api/values
-       [HttpGet]
+        // GET api/values
+        [HttpGet]
         public ActionResult Get()
         {
             return Ok(_personService.FindAll());
@@ -64,7 +60,7 @@ namespace Rest_Web_API_NET_5.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult Put([FromBody] Person person)
         {
 
