@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Rest_Web_API_NET_5.Data.VO;
 using Rest_Web_API_NET_5.Model;
+<<<<<<< HEAD
 using Rest_Web_API_NET_5.Services;
+=======
+using Rest_Web_API_NET_5.Repository;
+>>>>>>> d51d9278772cc8945ed97ff1b3e2bda77e2b2146
 
 namespace Rest_Web_API_NET_5.Controllers
 {
@@ -12,11 +17,11 @@ namespace Rest_Web_API_NET_5.Controllers
     {
         private readonly ILogger<PersonController> _logger;
 
-        private IPersonService _personService;
+        private readonly IPersonBusiness _personBusiness;
 
-        public PersonController(IPersonService personService, ILogger<PersonController> logger)
+        public  PersonController(IPersonBusiness personBusiness, ILogger<PersonController> logger)
         {
-            _personService = personService;
+            _personBusiness = personBusiness;
             _logger = logger;
         }
 
@@ -27,14 +32,14 @@ namespace Rest_Web_API_NET_5.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if (person == null)
             {
                 NotFound();
@@ -45,7 +50,7 @@ namespace Rest_Web_API_NET_5.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] Person person)
+        public ActionResult Post([FromBody] PersonVO person)
         {
 
             if (person == null)
@@ -53,15 +58,19 @@ namespace Rest_Web_API_NET_5.Controllers
                 return BadRequest();
             }
 
-            // return new ObjectResult(_personService.Create(person));
+            // return new ObjectResult(_personService.Create(PersonVO));
 
-            return Ok(_personService.Create(person));
+            return Ok(_personBusiness.Create(person));
 
         }
 
         // PUT api/values/5
         [HttpPut]
+<<<<<<< HEAD
         public ActionResult Put([FromBody] Person person)
+=======
+        public ActionResult Put([FromBody] PersonVO person)
+>>>>>>> d51d9278772cc8945ed97ff1b3e2bda77e2b2146
         {
 
             if (person == null)
@@ -69,7 +78,7 @@ namespace Rest_Web_API_NET_5.Controllers
                 return BadRequest();
             }
 
-            return Ok(_personService.Update(person));
+            return Ok(_personBusiness.Update(person));
 
         }
 
@@ -77,7 +86,7 @@ namespace Rest_Web_API_NET_5.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
 
             return NoContent();
         }

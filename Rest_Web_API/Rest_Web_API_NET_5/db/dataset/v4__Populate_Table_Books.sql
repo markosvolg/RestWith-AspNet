@@ -1,0 +1,1 @@
+INSERT INTO `books` VALUES (1,'Pai Rico, Pai Pobre','Robert Kiyosaki','Economia'),(2,'Como organizar sua vida financeira','Gustavo Cerbasi','Economia'),(3,'O Homem Mais Rico da Babilônia','George S Clason','Economia'),(4,'Segredos Da Mente Milionária','T. Harv Eker','Economia'),(5,'O Investidor Inteligente','Benjamin Graham','Financeiro');
